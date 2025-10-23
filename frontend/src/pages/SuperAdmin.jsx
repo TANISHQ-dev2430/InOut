@@ -9,6 +9,13 @@ export default function SuperAdminPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    const uid = localStorage.getItem("uid");
+      const role = localStorage.getItem("role");
+
+      if (!uid || role !== "superadmin") {
+        navigate("/codelogin");
+      }
     const fetchAdmins = async () => {
       setFetching(true);
       try {
@@ -49,7 +56,44 @@ export default function SuperAdminPage() {
           Create
         </button>
       </div>
-      <p className="text-lg mb-6 font-semibold">Here is the list of all superadmin and admins:</p>
+      <p className="text-lg mb-6 font-semibold">Here is the list of all SuperAdmins:</p>
+
+      <div className="overflow-x-auto mb-8">
+        <table className="table-auto w-full border-collapse border border-white">
+          <thead>
+            <tr className="bg-[#333]">
+              <th className="border border-white px-4 py-2">S.NO</th>
+              <th className="border border-white px-4 py-2">NAME</th>
+              <th className="border border-white px-4 py-2">CODE</th>
+              <th className="border border-white px-4 py-2">ROLE</th>
+              <th className="border border-white px-4 py-2">INSTITUTE</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fetching ? (
+              <tr>
+                <td colSpan="5" className="text-center py-4">Loading...</td>
+              </tr>
+            ) : admins.filter(admin => admin.role === "superadmin").length > 0 ? (
+              admins.filter(admin => admin.role === "superadmin").map((admin, index) => (
+                <tr key={admin.id} className="hover:bg-[#444]">
+                  <td className="border border-white px-4 py-2 text-center">{index + 1}</td>
+                  <td className="border border-white px-4 py-2 text-center">{admin.targetData?.name || "N/A"}</td>
+                  <td className="border border-white px-4 py-2 text-center">{admin.code}</td>
+                  <td className="border border-white px-4 py-2 text-center">{admin.role}</td>
+                  <td className="border border-white px-4 py-2 text-center">{admin.targetData?.institute || "N/A"}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center py-4">No SuperAdmins available</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      <p className="text-lg mb-6 font-semibold">Here is the list of all Admins:</p>
 
       <div className="overflow-x-auto">
         <table className="table-auto w-full border-collapse border border-white">
@@ -67,10 +111,10 @@ export default function SuperAdminPage() {
               <tr>
                 <td colSpan="5" className="text-center py-4">Loading...</td>
               </tr>
-            ) : admins.length > 0 ? (
-              admins.map((admin) => (
+            ) : admins.filter(admin => admin.role === "admin").length > 0 ? (
+              admins.filter(admin => admin.role === "admin").map((admin, index) => (
                 <tr key={admin.id} className="hover:bg-[#444]">
-                  <td className="border border-white px-4 py-2 text-center">{admin.serial}</td>
+                  <td className="border border-white px-4 py-2 text-center">{index + 1}</td>
                   <td className="border border-white px-4 py-2 text-center">{admin.targetData?.name || "N/A"}</td>
                   <td className="border border-white px-4 py-2 text-center">{admin.code}</td>
                   <td className="border border-white px-4 py-2 text-center">{admin.role}</td>
@@ -79,7 +123,7 @@ export default function SuperAdminPage() {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="text-center py-4">No data available</td>
+                <td colSpan="5" className="text-center py-4">No Admins available</td>
               </tr>
             )}
           </tbody>

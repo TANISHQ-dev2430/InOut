@@ -8,8 +8,10 @@ This project is a React-based Single Page Application (SPA) designed to manage s
 - **User Role Management**: Superadmin, admin, and guard roles with dynamic filtering.
 - **Institute-Based Filtering**: Lists are filtered to show data only for the logged-in user's institute.
 - **Creation Forms**: Forms for creating superadmins, admins, and guards.
-- **UI/UX**: Styled using Tailwind CSS.
-- **Firestore Integration**: Data storage and retrieval for user roles and access codes.
+- **QR Code Scanning**: Integrated QR scanner for managing entry/exit records.
+- **Digital ID Cards**: Profile section displaying student ID cards with QR codes.
+- **UI/UX**: Modern interface styled using Tailwind CSS.
+- **Firestore Integration**: Data storage and retrieval for user roles, access codes, and entry records.
 - **Routing**: Navigation between pages using React Router.
 - **Local Storage Context**: Custom context for managing logged-in user state.
 
@@ -53,18 +55,26 @@ frontend/
 - **`SuperAdmin.jsx`**: Displays superadmin list filtered by institute.
 - **`adminCreate.jsx`**: Form for creating admins and guards.
 - **`SuperAdminCreate.jsx`**: Form for creating superadmins.
+- **`Guard.jsx`**: Handles QR code scanning and entry/exit management.
+- **`Profile.jsx`**: Displays student ID cards with QR codes.
 
 ## Technologies Used
-- React
+- React 18
 - Tailwind CSS
 - Firebase Firestore
 - Vite
 - React Router
+- QR Scanner Library
+- React Context API
 
 ## Future Enhancements
 - Add Firebase Authentication.
 - Improve error handling and validation.
 - Enhance UI/UX with animations and transitions.
+- Add real-time entry/exit notifications.
+- Implement batch QR code generation.
+- Add detailed entry/exit analytics.
+- Enable offline mode support.
 
 ## Contributors
 - **Owner**: messi-dev10

@@ -17,14 +17,13 @@ import LostAndFound from "./src/pages/LostAndFound";
 import Loader from "./src/components/Loader";
 import Admin from "./src/pages/admin";
 import AdminCreate from "./src/pages/adminCreate";
-import { AuthProvider } from "./src/context/AuthContext";
+
 
 // Main App component that handles routing and state management
 function App() {
   const [portalInstance, setPortalInstance] = useState(null);
 
   return (
-    <AuthProvider>
       <Router>
         <div style={{ backgroundColor: '#1E1E1E', minHeight: '100vh' }}>
           {portalInstance && <Header />}
@@ -98,7 +97,6 @@ function App() {
           </Suspense>
         </div>
       </Router>
-    </AuthProvider>
   );
 }
 
