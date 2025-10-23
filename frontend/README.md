@@ -77,9 +77,5 @@ frontend/
 - Enable offline mode support.
 
 ## Contributors
-- **Owner**: messi-dev10
-- **Collaborators**: [Add names here]
-
-## License
-[Specify license here]
+- **Owner**: TANISHQ-dev2430
 
